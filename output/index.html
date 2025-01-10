@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>时间计算器</title>
+  <link rel="stylesheet" href="https://unpkg.com/@fluentui/web-components/dist/web-components.min.css">
+  <link rel="stylesheet" href="../style.css">
+  <script type="module" src="https://unpkg.com/@fluentui/web-components/dist/web-components.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>生产时间计算器</h1>
+    <div class="input-group">
+      <fluent-text-field id="layers" placeholder="请输入层数"></fluent-text-field>
+    </div>
+    <fluent-button id="calculate-btn" appearance="accent" onclick="calculate()">计算</fluent-button>
+    
+    <div class="result">
+      <h2>计算结果：</h2>
+      <fluent-data-grid id="result-table" generate-header="sticky" aria-label="计算结果表格">
+        <fluent-data-grid-row row-type="header">
+          <fluent-data-grid-cell cell-type="columnheader" grid-column="1">项目</fluent-data-grid-cell>
+          <fluent-data-grid-cell cell-type="columnheader" grid-column="2">量产时间</fluent-data-grid-cell>
+          <fluent-data-grid-cell cell-type="columnheader" grid-column="3">样品时间</fluent-data-grid-cell>
+        </fluent-data-grid-row>
+        <fluent-data-grid-row>
+          <fluent-data-grid-cell grid-column="1">Core时间</fluent-data-grid-cell>
+          <fluent-data-grid-cell grid-column="2" id="core-time">-</fluent-data-grid-cell>
+          <fluent-data-grid-cell grid-column="3" id="core-sample-time">-</fluent-data-grid-cell>
+        </fluent-data-grid-row>
+        <fluent-data-grid-row>
+          <fluent-data-grid-cell grid-column="1">BU时间</fluent-data-grid-cell>
+          <fluent-data-grid-cell grid-column="2" id="bu-time">-</fluent-data-grid-cell>
+          <fluent-data-grid-cell grid-column="3" id="bu-sample-time">-</fluent-data-grid-cell>
+        </fluent-data-grid-row>
+        <fluent-data-grid-row>
+          <fluent-data-grid-cell grid-column="1">BE时间</fluent-data-grid-cell>
+          <fluent-data-grid-cell grid-column="2" id="be-time">-</fluent-data-grid-cell>
+          <fluent-data-grid-cell grid-column="3" id="be-sample-time">-</fluent-data-grid-cell>
+        </fluent-data-grid-row>
+        <fluent-data-grid-row>
+          <fluent-data-grid-cell grid-column="1">总时间</fluent-data-grid-cell>
+          <fluent-data-grid-cell grid-column="2" id="total-time">-</fluent-data-grid-cell>
+          <fluent-data-grid-cell grid-column="3" id="total-sample-time">-</fluent-data-grid-cell>
+        </fluent-data-grid-row>
+        <fluent-data-grid-row>
+          <fluent-data-grid-cell grid-column="1">总周数</fluent-data-grid-cell>
+          <fluent-data-grid-cell grid-column="2" id="total-weeks">-</fluent-data-grid-cell>
+          <fluent-data-grid-cell grid-column="3" id="total-sample-weeks">-</fluent-data-grid-cell>
+        </fluent-data-grid-row>
+      </fluent-data-grid>
+    </div>
+  </div>
+  <script src="script.js"></script>
+  
+  <!-- 底部导航栏 -->
+  <nav class="bottom-nav">
+    <fluent-tabs>
+      <fluent-tab onclick="window.location.href='../'">
+        <div class="tab-item">
+          <img src="../icons/home.svg" alt="首页" class="tab-icon">
+          <span class="tab-text">报价参考</span>
+        </div>
+      </fluent-tab>
+      <fluent-tab onclick="window.location.href = window.location.href + '/output'">
+        <div class="tab-item">
+          <img src="../icons/calculator.svg" alt="计算" class="tab-icon">
+          <span class="tab-text">生产周期</span>
+        </div>
+      </fluent-tab>
+      <fluent-tab>
+        <div class="tab-item">
+          <img src="../icons/settings.svg" alt="设置" class="tab-icon">
+          <span class="tab-text">其他</span>
+        </div>
+      </fluent-tab>
+    </fluent-tabs>
+  </nav>
+</body>
+</html>

@@ -24,6 +24,7 @@ body {
   border-radius: 0;
   box-shadow: none;
   min-height: 100vh;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -133,6 +134,24 @@ fluent-button {
 .bottom-nav fluent-tab:hover {
   background: var(--background-color);
 }
+
+.tab-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  
+  .container {
+    padding: 16px;
+  }
+}
+
 
 /* 调整容器底部间距 */
 .container {
