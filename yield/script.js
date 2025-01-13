@@ -34,8 +34,8 @@ function calculate() {
     return;
   }
   
-  if (isNaN(layers) || ![6, 8, 10, 12].includes(layers)) {
-    alert('请输入有效的层数（6、8、10或12）');
+  if (isNaN(layers) || ![6, 8, 10, 12,14,16,18,20,22,24,26,28,30].includes(layers)) {
+    alert('请输入有效的层数');
     return;
   }
 
