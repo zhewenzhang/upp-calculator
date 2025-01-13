@@ -44,26 +44,20 @@
   
   <!-- 底部导航栏 -->
   <nav class="bottom-nav">
-    <fluent-tabs>
-      <fluent-tab>
-        <div class="tab-item">
-          <img src="icons/home.svg" alt="首页" class="tab-icon">
-          <span class="tab-text">报价参考</span>
-        </div>
-      </fluent-tab>
-      <fluent-tab onclick="window.location.href = window.location.href + '/output'">
-        <div class="tab-item">
-          <img src="icons/calculator.svg" alt="计算" class="tab-icon">
-          <span class="tab-text">生产周期</span>
-        </div>
-      </fluent-tab>
-      <fluent-tab onclick="window.location.href = window.location.href + '/yield'">
-        <div class="tab-item">
-          <img src="icons/settings.svg" alt="设置" class="tab-icon">
-          <span class="tab-text">其他</span>
-        </div>
-      </fluent-tab>
-    </fluent-tabs>
+    <div class="nav-tabs">
+      <a href="./" class="tab-item">
+        <img src="icons/home.svg" alt="首页" class="tab-icon">
+        <span class="tab-text">报价参考</span>
+      </a>
+      <a href="./output" class="tab-item">
+        <img src="icons/calculator.svg" alt="计算" class="tab-icon">
+        <span class="tab-text">生产周期</span>
+      </a>
+      <a href="./yield" class="tab-item">
+        <img src="icons/settings.svg" alt="设置" class="tab-icon">
+        <span class="tab-text">其他</span>
+      </a>
+    </div>
   </nav>
 </body>
 </html>

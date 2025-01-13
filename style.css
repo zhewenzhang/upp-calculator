@@ -75,16 +75,6 @@ fluent-button {
   background: white;
 }
 
-@media (max-width: 480px) {
-  body {
-    padding: 10px;
-  }
-  
-  .container {
-    padding: 16px;
-  }
-}
-
 /* 底部导航栏样式 */
 .bottom-nav {
   position: fixed;
@@ -95,6 +85,14 @@ fluent-button {
   background: white;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
   z-index: 100;
+}
+
+.nav-tabs {
+  height: 100%;
+  display: flex;
+  width: 100%;
+  padding: 0;
+  justify-content: space-around;
 }
 
 .tab-item {
@@ -116,49 +114,27 @@ fluent-button {
   text-decoration: none;
 }
 
-.bottom-nav fluent-tabs::part(tablist) {
-  height: 100%;
-  display: flex;
-  width: 100%;
-  padding: 0;
-  justify-content: space-around;
-}
-
-.bottom-nav fluent-tab {
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-}
-
-.bottom-nav fluent-tab::part(root) {
-  flex: 1 1 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-color);
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  border-radius: 0;
-  margin: 0;
-  padding: 0;
-  min-width: 120px;
-  text-align: center;
-  border-right: 1px solid rgba(0,0,0,0.1);
-}
-
-.bottom-nav fluent-tab:last-child::part(root) {
+.tab-item:last-child {
   border-right: none;
 }
 
-.bottom-nav fluent-tab:hover {
+.tab-item:hover {
   background: var(--background-color);
 }
 
 .tab-icon {
   width: 24px;
   height: 24px;
-  margin-right: 8px;
-  vertical-align: middle;
+  margin-bottom: 4px;
+}
+
+.tab-text {
+  font-size: 12px;
+}
+
+/* 调整容器底部间距 */
+.container {
+  padding-bottom: 72px;
 }
 
 @media (max-width: 480px) {
@@ -169,12 +145,6 @@ fluent-button {
   .container {
     padding: 16px;
   }
-}
-
-
-/* 调整容器底部间距 */
-.container {
-  padding-bottom: 72px;
 }
 
 /* 最佳值高亮样式 */
