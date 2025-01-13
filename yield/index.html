@@ -42,19 +42,19 @@
     }
 
     .input-group {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-bottom: 24px;
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 16px;
     }
 
     input[type="number"] {
       width: 100%;
-      padding: 12px;
-      margin: 8px 0;
+      padding: 8px;
       border: 1px solid #ddd;
       border-radius: 4px;
-      font-size: 16px;
+      font-size: 14px;
     }
 
     .calculate-btn {
@@ -195,7 +195,7 @@
     <button id="calculate-btn" class="calculate-btn" onclick="calculate()">计算</button>
     
     <div class="result">
-      <h2>计算结果：</h2>
+      <h2>预估良率参考：</h2>
       <table id="result-table" class="result-table">
         <thead>
           <tr>
@@ -204,10 +204,6 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>尺寸范围</td>
-            <td id="size-range">-</td>
-          </tr>
           <tr>
             <td>样品良率</td>
             <td id="sample-yield">-</td>

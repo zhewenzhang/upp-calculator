@@ -69,7 +69,6 @@ function calculate() {
   const massYield = yieldValue;
 
   // 更新表格显示
-  document.getElementById('size-range').textContent = sizeRange;
   document.getElementById('sample-yield').textContent = `${sampleYield}%`;
   document.getElementById('mass-yield').textContent = `${massYield}%`;
   
