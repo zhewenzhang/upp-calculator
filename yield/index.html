@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>良率预估计算器</title>
+  <link rel="stylesheet" href="https://unpkg.com/@fluentui/web-components/dist/web-components.min.css">
+  <link rel="stylesheet" href="../style.css">
+  <script type="module" src="https://unpkg.com/@fluentui/web-components/dist/web-components.min.js"></script>
+  <style>
+    :root {
+      --primary-color: #0078d4;
+      --background-color: #f3f2f1;
+      --text-color: #323130;
+    }
+
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 100%;
+      background: white;
+      padding: 16px;
+      border-radius: 0;
+      box-shadow: none;
+      min-height: 100vh;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: var(--primary-color);
+      text-align: center;
+      margin: 24px 0;
+      font-size: 1.5rem;
+    }
+
+    .input-group {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .calculate-btn {
+      width: 100%;
+      padding: 12px;
+      margin: 16px 0;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .calculate-btn:hover {
+      background-color: #106ebe;
+    }
+
+    .result {
+      margin: 24px 0;
+      padding: 16px;
+      background: var(--background-color);
+      border-radius: 4px;
+    }
+
+    .result h2 {
+      font-size: 1.2rem;
+      margin: 0 0 12px 0;
+      color: var(--text-color);
+    }
+
+    .result-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+
+    .result-table th,
+    .result-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .result-table th {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    /* 底部导航栏样式 */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 56px;
+      background: white;
+      box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+    }
+
+    .nav-tabs {
+      height: 100%;
+      display: flex;
+      width: 100%;
+      padding: 0;
+      justify-content: space-around;
+    }
+
+    .tab-item {
+      flex: 1;
+      min-width: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-color);
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      border-radius: 0;
+      margin: 0;
+      padding: 8px 0;
+      text-align: center;
+      border-right: 1px solid rgba(0,0,0,0.1);
+      text-decoration: none;
+    }
+
+    .tab-item:last-child {
+      border-right: none;
+    }
+
+    .tab-item:hover {
+      background: var(--background-color);
+    }
+
+    .tab-icon {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 4px;
+    }
+
+    .tab-text {
+      font-size: 12px;
+    }
+
+    /* 调整容器底部间距 */
+    .container {
+      padding-bottom: 72px;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+      
+      .container {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>良率预估计算器</h1>
+        <div class="input-group">
+          <label for="x-size">X尺寸:</label>
+          <input type="number" id="x-size" step="0.1">
+        </div>
+        <div class="input-group">
+          <label for="y-size">Y尺寸:</label>
+          <input type="number" id="y-size" step="0.1">
+        </div>
+        <div class="input-group">
+          <label for="layers">Layer数:</label>
+          <input type="number" id="layers" min="1" step="1">
+        </div>
+    <button id="calculate-btn" class="calculate-btn" onclick="calculate()">计算</button>
+    
+    <div class="result">
+      <h2>预估良率参考：</h2>
+      <table id="result-table" class="result-table">
+        <thead>
+          <tr>
+            <th>项目</th>
+            <th>值</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>样品良率</td>
+            <td id="sample-yield">-</td>
+          </tr>
+          <tr>
+            <td>量产良率</td>
+            <td id="mass-yield">-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="script.js"></script>
+  
+  <!-- 底部导航栏 -->
+  <nav class="bottom-nav">
+    <div class="nav-tabs">
+      <a href="../" class="tab-item">
+        <img src="../icons/home.svg" alt="首页" class="tab-icon">
+        <span class="tab-text">报价参考</span>
+      </a>
+      <a href="../output" class="tab-item">
+        <img src="../icons/calculator.svg" alt="计算" class="tab-icon">
+        <span class="tab-text">生产周期</span>
+      </a>
+      <a href="./" class="tab-item">
+        <img src="../icons/settings.svg" alt="设置" class="tab-icon">
+        <span class="tab-text">其他</span>
+      </a>
+    </div>
+  </nav>
+</body>
+</html>

@@ -24,6 +24,7 @@ body {
   border-radius: 0;
   box-shadow: none;
   min-height: 100vh;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
@@ -74,16 +75,6 @@ fluent-button {
   background: white;
 }
 
-@media (max-width: 480px) {
-  body {
-    padding: 10px;
-  }
-  
-  .container {
-    padding: 16px;
-  }
-}
-
 /* 底部导航栏样式 */
 .bottom-nav {
   position: fixed;
@@ -96,7 +87,7 @@ fluent-button {
   z-index: 100;
 }
 
-.bottom-nav fluent-tabs::part(tablist) {
+.nav-tabs {
   height: 100%;
   display: flex;
   width: 100%;
@@ -104,15 +95,12 @@ fluent-button {
   justify-content: space-around;
 }
 
-.bottom-nav fluent-tab {
+.tab-item {
   flex: 1;
   min-width: 0;
   overflow: hidden;
-}
-
-.bottom-nav fluent-tab::part(root) {
-  flex: 1 1 auto;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   color: var(--text-color);
@@ -120,21 +108,88 @@ fluent-button {
   transition: background-color 0.2s ease;
   border-radius: 0;
   margin: 0;
-  padding: 0;
-  min-width: 120px;
+  padding: 8px 0;
   text-align: center;
   border-right: 1px solid rgba(0,0,0,0.1);
+  text-decoration: none;
 }
 
-.bottom-nav fluent-tab:last-child::part(root) {
+.tab-item:last-child {
   border-right: none;
 }
 
-.bottom-nav fluent-tab:hover {
+.tab-item:hover {
   background: var(--background-color);
+}
+
+.tab-icon {
+  width: 24px;
+  height: 24px;
+  margin-bottom: 4px;
+}
+
+.tab-text {
+  font-size: 12px;
 }
 
 /* 调整容器底部间距 */
 .container {
   padding-bottom: 72px;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+  
+  .container {
+    padding: 16px;
+  }
+}
+
+/* 最佳值高亮样式 */
+.best-value {
+  background-color: #e6f4ea;
+  font-weight: bold;
+  color: #0d6efd;
+}
+
+.comparison {
+  margin-top: 24px;
+}
+
+.comparison h2 {
+  font-size: 1.2rem;
+  margin: 0 0 12px 0;
+  color: var(--text-color);
+}
+
+.data-table {
+  width: 100%;
+  margin-top: 12px;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.data-table th,
+.data-table td {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.data-table th {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: bold;
+}
+
+.data-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.data-table tr:hover {
+  background-color: #f1f1f1;
 }
